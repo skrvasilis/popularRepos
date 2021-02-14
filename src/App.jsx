@@ -41,7 +41,7 @@ export default function App() {
       <div className="search">
         <form onSubmit={(e) => handleSubmit(e)}>
           <label htmlFor="language">
-            <h4> type the language that you are looking for</h4>
+            <h4>Type the language that you are looking for</h4>
             <input
               type="text"
               name="language"
@@ -57,7 +57,7 @@ export default function App() {
       <section>
         {apiError === true ? (
           <h2 className="title">
-            sorry <span>{language}</span> is not a programming language please
+            Sorry, <span>{language}</span> is not a programming language please
             try again
           </h2>
         ) : null}
