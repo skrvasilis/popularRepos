@@ -82,12 +82,15 @@ export default function App() {
                             {item.name}
                           </a>
                         </h2>
-                        <h5>
-                          <a href={item.owner.html_url} target="_blank">
-                            {item.owner.login}
-                            <img src={item.owner.avatar_url} alt="Avatar" />
-                          </a>
-                        </h5>
+                        <div className="owner">
+                          {" "}
+                          <h5>
+                            <a href={item.owner.html_url} target="_blank">
+                              {item.owner.login}
+                            </a>
+                          </h5>
+                          <img src={item.owner.avatar_url} alt="Avatar" />
+                        </div>
                       </div>
                       <div className="infos">
                         <p>
