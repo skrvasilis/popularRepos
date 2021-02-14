@@ -2,19 +2,19 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./App.scss";
 
-// created:${week}
 export default function App() {
   const [input, setInput] = useState("");
   const [language, setLanguage] = useState("");
-  const [bestRepos, setBesrRepos] = useState([]);
+  const [bestRepos, setBestRepos] = useState([]);
   const [apiError, setApiError] = useState(false);
 
   useEffect(async () => {
     try {
       const res = await axios.get(
-        `https://api.github.com/search/repositories?q=language:${input}&order=desc`
+        `https://api.github.com/search/repositories?q=language:&sort=stars&order=desc`
       );
-      setBesrRepos(res.data.items);
+      setBestRepos(res.data.items);
+      console.log(res.data.items);
     } catch (error) {
       console.log(error);
     }
@@ -27,11 +27,12 @@ export default function App() {
       const res = await axios.get(
         `https://api.github.com/search/repositories?q=language:${input}&sort=stars&order=desc`
       );
-      setBesrRepos(res.data.items);
+      setBestRepos(res.data.items);
+      console.log(res.data.items);
       setInput("");
     } catch (error) {
       setApiError(true);
-      setBesrRepos([]);
+      setBestRepos([]);
       console.log(error);
       setInput("");
     }
@@ -69,45 +70,42 @@ export default function App() {
             <span>{language === "" ? "all languages" : `${language}`}</span>
           </h2>
         ) : null}
-        {bestRepos &&
-          bestRepos.map((item) => {
-            return (
-              <>
-                <ul>
-                  <li>
-                    <div className="result">
-                      <div className="names">
-                        <h2 className="repo">
-                          <a href={item.html_url} target="_blank">
-                            {item.name}
+        <ul>
+          {bestRepos &&
+            bestRepos.map((item) => {
+              return (
+                <li key={item.id}>
+                  <div className="result">
+                    <div className="names">
+                      <h2 className="repo">
+                        <a href={item.html_url} target="_blank">
+                          {item.name}
+                        </a>
+                      </h2>
+                      <div className="owner">
+                        {" "}
+                        <h5>
+                          <a href={item.owner.html_url} target="_blank">
+                            {item.owner.login}
                           </a>
-                        </h2>
-                        <div className="owner">
-                          {" "}
-                          <h5>
-                            <a href={item.owner.html_url} target="_blank">
-                              {item.owner.login}
-                            </a>
-                          </h5>
-                          <img src={item.owner.avatar_url} alt="Avatar" />
-                        </div>
-                      </div>
-                      <div className="infos">
-                        <p>
-                          <i class="fas fa-code-branch"></i> Forks: {item.forks}
-                        </p>
-                        <p>
-                          <i class="fas fa-eye"></i> Watch : {item.watchers}
-                        </p>
+                        </h5>
+                        <img src={item.owner.avatar_url} alt="Avatar" />
                       </div>
                     </div>
-
-                    <p>{item.description}</p>
-                  </li>
-                </ul>
-              </>
-            );
-          })}
+                    <div className="infos">
+                      <p>
+                        <i class="fas fa-code-branch"></i> Forks: {item.forks}
+                      </p>
+                      <p>
+                        <i class="fas fa-eye"></i> Watch : {item.watchers}
+                      </p>
+                    </div>
+                  </div>
+                  <p>{item.description}</p>
+                </li>
+              );
+            })}
+        </ul>
       </section>
     </div>
   );

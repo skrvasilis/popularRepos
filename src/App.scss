@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
 
 $bg-dark: #222d32;
-$bg-black: rgb(36, 26, 26);
+$bg-black: rgb(35, 26, 26);
 
 * {
   padding: 0;
@@ -16,7 +16,7 @@ body,
   height: 100%;
   background: $bg-dark;
   scroll-behavior: smooth;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
 
   span {
     color: red;
@@ -71,7 +71,7 @@ body,
 
   section {
     width: 50%;
-    margin: 30px auto;
+    margin: auto;
 
     li {
       margin-top: 30px;
@@ -89,6 +89,7 @@ body,
         .infos {
           display: flex;
           flex-wrap: wrap;
+          margin: 5px 5px 0 0;
           justify-content: flex-end;
           height: 100%;
 
@@ -113,7 +114,7 @@ body,
             font-size: 30px;
           }
           .owner {
-            margin-top: 5px;
+            margin-top: 10px;
             display: flex;
             justify-content: flex-start;
             h5 {
@@ -129,9 +130,6 @@ body,
               margin-bottom: 2px;
             }
           }
-        
-           
-          
         }
       }
       p {
