@@ -14,7 +14,6 @@ export default function App() {
         `https://api.github.com/search/repositories?q=language:&sort=stars&order=desc`
       );
       setBestRepos(res.data.items);
-      console.log(res.data.items);
     } catch (error) {
       console.log(error);
     }
@@ -28,7 +27,6 @@ export default function App() {
         `https://api.github.com/search/repositories?q=language:${input}&sort=stars&order=desc`
       );
       setBestRepos(res.data.items);
-      console.log(res.data.items);
       setInput("");
     } catch (error) {
       setApiError(true);
@@ -94,10 +92,10 @@ export default function App() {
                     </div>
                     <div className="infos">
                       <p>
-                        <i class="fas fa-code-branch"></i> Forks: {item.forks}
+                        <i className="fas fa-code-branch"></i> Forks: {item.forks}
                       </p>
                       <p>
-                        <i class="fas fa-eye"></i> Watch : {item.watchers}
+                        <i className="fas fa-eye"></i> Watch : {item.watchers}
                       </p>
                     </div>
                   </div>
