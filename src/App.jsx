@@ -8,23 +8,26 @@ export default function App() {
   const [bestRepos, setBestRepos] = useState([]);
   const [apiError, setApiError] = useState(false);
 
-  useEffect(async () => {
+  useEffect( () => {
+      (async function () {
     try {
       const res = await axios.get(
-        `https://api.github.com/search/repositories?q=language:&sort=stars&order=desc`
+        `https://api.github.com/search/repositories?q=language:&sort=stars&order=desc&type=Repositories`
       );
       setBestRepos(res.data.items);
     } catch (error) {
-      console.log(error);
+      console.log(error); 
     }
+  })();
   }, []);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setApiError(false);
     try {
       const res = await axios.get(
-        `https://api.github.com/search/repositories?q=language:${input}&sort=stars&order=desc`
+        `https://api.github.com/search/repositories?q=language:${input}&sort=stars&order=desc&type=Repositories`
       );
       setBestRepos(res.data.items);
       setInput("");
